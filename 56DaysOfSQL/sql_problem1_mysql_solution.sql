@@ -29,11 +29,10 @@ follower_count AS(
 )
 SELECT 
     f.user_id,
-    CAST((f.followers * 100.0) / (
-				SELECT 
+    ROUND((f.followers * 100.0) / (SELECT 
                     COUNT(*)
                 FROM
-                    distinct_users) AS DECIMAL(10,2)
-            ) AS famous_percentage
+                    distinct_users),
+            2) AS famous_percentage
 FROM
     follower_count f;
