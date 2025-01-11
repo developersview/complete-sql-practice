@@ -6,6 +6,7 @@ Order your list by projects with the highest budget per employee first.
 */
 USE sqlpractice;
 
+DROP TABLE IF EXISTS ms_projects;
 CREATE TABLE ms_projects (
     id INT,
     title VARCHAR(15),
@@ -23,6 +24,7 @@ VALUES (1, 'Project1',  29498),(2, 'Project2',  32487),
 (17, 'Project17',    19061),(18, 'Project18',    10302),
 (19, 'Project19',    44986),(20, 'Project20',    19497);
 
+DROP TABLE IF EXISTS ms_emp_projects;
 CREATE TABLE ms_emp_projects (
     emp_id INT,
     project_id INT
