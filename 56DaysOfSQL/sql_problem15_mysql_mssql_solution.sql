@@ -44,3 +44,4 @@ FROM
     distinct_counts dc ON g.day = dc.day
 WHERE
     dc.distinct_receiver > dc.distinct_sender;
+
