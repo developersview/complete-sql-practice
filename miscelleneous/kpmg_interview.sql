@@ -33,25 +33,19 @@ limit 3;
 
 
 -- without limit or offset
-with total_amount_cte as (
+with ranked_total_amount as (
 	select
 		customer_id,
-		sum(amount) as total_amount
+		sum(amount) as total_amount,
+		DENSE_RANK() OVER(ORDER BY SUM(amount) DESC) as rnk
 	from
 		orders
 	group by customer_id
-),
-ranked_total_amount as (
-	select
-		*,
-		DENSE_RANK() over (order by total_amount desc) as rnk
-	from
-		total_amount_cte
 )
 select 
 	customer_id, total_amount
 from ranked_total_amount
-where rnk in (1, 2, 3);
+where rnk <= 3;
 
 
 
